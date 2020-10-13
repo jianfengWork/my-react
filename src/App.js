@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Child from './Child'
+import Redux from './Redux'
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class App extends Component {
   render() {
     const componentStyle = {
       color: '#e62340',
+      padding: '20px 0 10px',
     }
     return (
       <div className="App">
@@ -35,6 +37,8 @@ class App extends Component {
         <div style={componentStyle}>Component</div>
         <input type="button" value="父向子通信" onClick={() => this.submitDesc()} />
         <Child ref={this.ChildDom} text={this.state.info} parent={this} />
+        <div style={componentStyle}>Redux</div>
+        <Redux />
       </div>
     )
   }
