@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Child from './Child'
 import Redux from './Redux'
 
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Page1 from './views/Page1';
+import Page2 from './views/Page2';
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -29,6 +33,9 @@ class App extends Component {
       color: '#e62340',
       padding: '20px 0 10px',
     }
+    const linkStyle = {
+      paddingRight: '20px',
+    }
     return (
       <div className="App">
         <header className="App-header">
@@ -39,10 +46,22 @@ class App extends Component {
         <Child ref={this.ChildDom} text={this.state.info} parent={this} />
         <div style={componentStyle}>Redux</div>
         <Redux />
+        <div style={componentStyle}>Router</div>
+        <Router>
+          <div>
+            <div className="nav-bar">
+              <Link className="nav-item" style={linkStyle} to="/">首页</Link>
+              <Link className="nav-item" style={linkStyle} to="/news/news1/1">新闻</Link>
+            </div>
+
+            <Route path="/" exact component={Page1} />
+            <Route path="/news" component={Page2} />
+          </div>
+        </Router>
       </div>
     )
   }
-  
+
 }
 
 export default App;
