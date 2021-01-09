@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ReactTypes from 'prop-types'
 
 export default class Child extends Component {
   constructor(props) {
@@ -10,6 +11,14 @@ export default class Child extends Component {
       desc: 'child',
     }
 
+  }
+
+  static defaultProps = { // 父级未传 props 默认设置
+    text: 'init',
+  }
+
+  static propTypes = { // 校验类型，控制台报错
+    text: ReactTypes.string,
   }
 
   async componentDidMount() {

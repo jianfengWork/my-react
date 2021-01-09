@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Page1 from './views/Page1';
 import Page2 from './views/Page2';
 
+import { DatePicker } from 'antd';
+import 'antd/dist/antd.css';
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -40,6 +43,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           hello react!
+          <DatePicker />
         </header>
         <div style={componentStyle}>Component</div>
         <input type="button" value="父向子通信" onClick={() => this.submitDesc()} />
@@ -54,6 +58,7 @@ class App extends Component {
               <Link className="nav-item" style={linkStyle} to="/news/news1/1">新闻</Link>
             </div>
 
+            {/* exact 精确匹配 */}
             <Route path="/" exact component={Page1} />
             <Route path="/news" component={Page2} />
           </div>
