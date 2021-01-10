@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Child from './Child'
 import Redux from './Redux'
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import Page1 from './views/Page1';
 import Page2 from './views/Page2';
 
@@ -54,13 +54,16 @@ class App extends Component {
         <Router>
           <div>
             <div className="nav-bar">
-              <Link className="nav-item" style={linkStyle} to="/">首页</Link>
-              <Link className="nav-item" style={linkStyle} to="/news/news1/1">新闻</Link>
+              <NavLink className="nav-item" style={linkStyle} activeClassName="nav-active" exact to="/">首页</NavLink>
+              <NavLink className="nav-item" style={linkStyle} activeClassName="nav-active" to="/news/news1/1">新闻</NavLink>
             </div>
 
-            {/* exact 精确匹配 */}
-            <Route path="/" exact component={Page1} />
-            <Route path="/news" component={Page2} />
+            {/* Switch，禁止匹配多条路由 */}
+            <Switch>
+              {/* exact 精确匹配 */}
+              <Route path="/" exact component={Page1} />
+              <Route path="/news" component={Page2} />
+            </Switch>
           </div>
         </Router>
       </div>

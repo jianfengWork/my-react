@@ -13,6 +13,7 @@ class Page1 extends Component {
     console.log('新闻1路由')
     const params = this.props.match.params;
     console.log('params:', params.id)
+    console.log('history:', this.props)
     return (
       <div>
         我是新闻1
