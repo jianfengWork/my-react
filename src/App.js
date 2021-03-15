@@ -15,6 +15,7 @@ class App extends Component {
 
     this.state = {
       info: 'write',
+      inputVal: '',
     }
 
     this.ChildDom = React.createRef();
@@ -24,6 +25,13 @@ class App extends Component {
   changeText(v) {
     this.setState({
       info: v
+    })
+  }
+
+  changeInputVal(type, event) { // 最后一个参数是 event
+    // console.log(type, event)
+    this.setState({
+      inputVal: event.target.value
     })
   }
 
@@ -45,6 +53,9 @@ class App extends Component {
           hello react!
           <DatePicker />
         </header>
+        {/* this.changeInputVal, this => App */}
+        {/* bind(this, 'type') this => input */}
+        <input type="text" value={this.state.inputVal} onChange={this.changeInputVal.bind(this, 'type')} />
         <div style={componentStyle}>Component</div>
         <input type="button" value="父向子通信" onClick={() => this.submitDesc()} />
         <Child ref={this.ChildDom} text={this.state.info} parent={this} />
