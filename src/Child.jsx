@@ -46,6 +46,12 @@ export default class Child extends Component {
     })
   }
 
+  deleteUser(id) {
+    this.setState({
+      users: this.state.users.filter(item => item.id != id)
+    })
+  }
+
   render() {
     const { text } = this.props
     const { desc } = this.state
@@ -54,7 +60,10 @@ export default class Child extends Component {
       <div>
         <ul>
           {this.state.users.map((user, index) => (
-            <li key={index} onClick={() => this.print(index, user)}>{user.user}, {user.password}</li>
+            <li key={index} onClick={() => this.print(index, user)}>
+              <span>{user.user}, {user.password}</span>
+              <a href="#" onClick={() => this.deleteUser(user.id)}>删除</a>
+            </li>
           ))}
         </ul>
         <input type="button" value="子向父通信" onClick={() => this.submitText()} />
