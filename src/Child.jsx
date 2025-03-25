@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactTypes from 'prop-types'
+import { Button } from 'antd';
 
 export default class Child extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export default class Child extends Component {
 
   deleteUser(id) {
     this.setState({
-      users: this.state.users.filter(item => item.id != id)
+      users: this.state.users.filter(item => item.id !== id)
     })
   }
 
@@ -62,7 +63,7 @@ export default class Child extends Component {
           {this.state.users.map((user, index) => (
             <li key={index} onClick={() => this.print(index, user)}>
               <span>{user.user}, {user.password}</span>
-              <a href="#" onClick={() => this.deleteUser(user.id)}>删除</a>
+              <Button type="primary" onClick={() => this.deleteUser(user.id)}>删除</Button>
             </li>
           ))}
         </ul>
