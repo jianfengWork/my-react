@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Child from './Child'
 import Redux from './Redux'
+import MobX from './MobX'
+import todoStore from './store/mobx';
+import { observer } from "mobx-react";
 
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import Page1 from './views/Page1';
@@ -58,9 +61,18 @@ class App extends Component {
         <input type="text" value={this.state.inputVal} onChange={this.changeInputVal.bind(this, 'type')} />
         <div style={componentStyle}>Component</div>
         <input type="button" value="父向子通信" onClick={() => this.submitDesc()} />
+        <h1>App Todo List</h1>
+        <ul>
+          {todoStore.todos.map((todo, index) => (
+            <li key={index}>{todo}</li>
+          ))}
+        </ul>
+        <div style={componentStyle}>Child</div>
         <Child ref={this.ChildDom} text={this.state.info} parent={this} />
         <div style={componentStyle}>Redux</div>
         <Redux />
+        <div style={componentStyle}>MobX</div>
+        <MobX />
         <div style={componentStyle}>Router</div>
         <Router>
           <div>
@@ -83,4 +95,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default observer(App);
